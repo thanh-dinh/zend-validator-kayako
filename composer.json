@@ -1,11 +1,11 @@
 {
-    "name": "zendframework/zend-validator",
+    "name": "zendframework/zend-validator-kayako",
     "description": "Validation classes for a wide range of domains, and the ability to chain validators to create complex validation criteria",
     "license": "BSD-3-Clause",
     "keywords": [
         "zendframework",
         "zf",
-        "validator"
+        "validator-kayako"
     ],
     "support": {
         "docs": "https://docs.zendframework.com/zend-validator/",

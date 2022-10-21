@@ -490,14 +490,19 @@ class EmailAddress extends AbstractValidator
         $value = is_string($value) ? $value : '';
 
         // Split email address up and disallow '..'
-        if (strpos($value, '..') !== false
-            || ! preg_match('/^(.+)@([^@]+)$/', $value, $matches)
-        ) {
-            return false;
-        }
+	    if (strpos($value, '..') !== false) {
+		    return false;
+	    }
 
-        $this->localPart = $matches[1];
-        $this->hostname  = $this->idnToAscii($matches[2]);
+	    if (preg_match('/^(.*)\<(.+)@([^@]+)\>(.*)$/', $value, $matches)) {
+		    $this->localPart = $matches[2];
+		    $this->hostname  = $this->idnToAscii($matches[3]);
+	    } elseif (preg_match('/^(.+)@([^@]+)$/', $value, $matches)) {
+		    $this->localPart = $matches[1];
+		    $this->hostname  = $this->idnToAscii($matches[2]);
+	    } else {
+		    return false;
+	    }
 
         return true;
     }
